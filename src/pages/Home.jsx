@@ -133,15 +133,19 @@ const Home = () => {
       >
         <h2 className="text-4xl font-bold text-gray-900 mb-6">About Nirajan</h2>
         <div className="space-y-4 text-lg text-gray-600">
-          <p>
-            With over 2 years of dedicated IELTS teaching experience, I've helped hundreds of students achieve their dream scores.
-          </p>
-          <p>
-            My teaching philosophy focuses on personalized learning, practical strategies, and continuous improvement. I believe in making complex concepts simple and helping students build confidence through practice.
-          </p>
-          <p>
-            Whether you're aiming for Band 7 or higher, I'm here to guide you through every step of your IELTS journey.
-          </p>
+        <p>
+  With over 2 years of dedicated experience in IELTS instruction, I've had the privilege of guiding hundreds of students toward achieving their desired band scores.
+</p>
+<p>
+  My journey spans across multiple international projects, allowing me to work within diverse cultures and adapt to varied communication styles. This exposure has not only broadened my perspective but also enhanced my ability to connect with learners from all backgrounds.
+</p>
+<p>
+  Teaching IELTS is more than a profession-it's a passion. I find genuine joy in breaking down complex ideas into simple, practical strategies that empower students to grow in confidence and capability.
+</p>
+<p>
+  Every learner is unique, and I believe in a personalized approach rooted in clarity, consistency, and continuous progress.
+</p>
+
         </div>
       </motion.div>
       <motion.div
