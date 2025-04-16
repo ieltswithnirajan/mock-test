@@ -10,17 +10,7 @@ const Footer = () => {
     {
       name: 'Discord',
       icon: ChatBubbleLeftIcon,
-      href: '#',
-    },
-    {
-      name: 'YouTube',
-      icon: VideoCameraIcon,
-      href: '#',
-    },
-    {
-      name: 'Instagram',
-      icon: PhotoIcon,
-      href: '#',
+      href: 'https://discord.gg/BU6qsGFs',
     },
   ];
 

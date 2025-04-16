@@ -29,6 +29,7 @@ const Timer = ({ duration, isActive }) => {
 const Speaking = () => {
   const [currentPart, setCurrentPart] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const parts = [
     {
@@ -79,6 +80,8 @@ const Speaking = () => {
   const handleNext = () => {
     if (currentPart < parts.length - 1) {
       setCurrentPart(currentPart + 1);
+    } else {
+      setIsCompleted(true);
     }
   };
 
@@ -87,6 +90,34 @@ const Speaking = () => {
       setCurrentPart(currentPart - 1);
     }
   };
+
+  if (isCompleted) {
+    return (
+      <div className="min-h-screen bg-gray-50 pt-24 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white rounded-2xl shadow-lg p-8 text-center"
+          >
+            <h1 className="text-4xl font-bold text-gray-900 mb-6">Congratulations!</h1>
+            <p className="text-xl text-gray-600 mb-8">
+              You have completed Mock Test 1. Well done on completing all sections of the test!
+            </p>
+            <div className="flex justify-center">
+              <button
+                onClick={() => window.location.href = '/mock-tests'}
+                className="bg-sky-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-sky-700 transition-colors"
+              >
+                Return to Mock Tests
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-12">
@@ -190,10 +221,9 @@ const Speaking = () => {
             </button>
             <button
               onClick={handleNext}
-              disabled={currentPart === parts.length - 1}
-              className="px-6 py-2 bg-sky-600 text-white rounded-lg font-medium hover:bg-sky-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-6 py-2 bg-sky-600 text-white rounded-lg font-medium hover:bg-sky-700"
             >
-              Next Part
+              {currentPart === parts.length - 1 ? 'Complete Test' : 'Next Part'}
             </button>
           </div>
         </motion.div>

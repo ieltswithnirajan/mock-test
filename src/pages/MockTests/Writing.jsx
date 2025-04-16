@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ClockIcon, ChartBarIcon, DocumentTextIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Timer from '../../components/Timer';
+import task1 from '../../../img/mock test 1/writingtask1.png';
 
 const Writing = () => {
   const { testId } = useParams();
+  const navigate = useNavigate();
   const [activeTask, setActiveTask] = useState(1);
   const [showInstructions, setShowInstructions] = useState(true);
+  const [wordCount, setWordCount] = useState(0);
+  const [textareaValue, setTextareaValue] = useState(''); // State for textarea content
 
   const mockTest = {
     title: "Writing Mock Test 1",
@@ -18,10 +22,11 @@ const Writing = () => {
         duration: "20 minutes",
         wordCount: "150 words minimum",
         description: "You should spend about 20 minutes on this task.",
-        prompt: `The graph below shows the number of visitors to two museums in London between June and September 2019.
-
-Summarize the information by selecting and reporting the main features, and make comparisons where relevant.`,
-        imageUrl: "https://via.placeholder.com/600x400?text=Sample+Graph",
+        prompt: `The graph below gives information about the sales of the three most commonly
+purchased items in a particular bakery for the year 2014.
+Summarise the information by selecting and reporting the main features, and make
+comparisons where relevant.`,
+        imageUrl: task1,
         tips: [
           "Spend no more than 20 minutes on this task",
           "Write at least 150 words",
@@ -36,9 +41,10 @@ Summarize the information by selecting and reporting the main features, and make
         duration: "40 minutes",
         wordCount: "250 words minimum",
         description: "You should spend about 40 minutes on this task.",
-        prompt: `Some people think that governments should spend money on space exploration, while others believe that money should be spent on improving living standards on Earth.
-
-Discuss both views and give your own opinion.`,
+        prompt: `The internet has changed the way we communicate. Much communication today
+happens through social media. Some people support this and think it is a positive
+development. Others believe that social media have negative effects.
+Discuss both these views and give your own opinion.`,
         tips: [
           "Spend no more than 40 minutes on this task",
           "Write at least 250 words",
@@ -52,6 +58,19 @@ Discuss both views and give your own opinion.`,
 
   const handleTimeUp = () => {
     alert("Time's up! Please submit your writing tasks.");
+  };
+
+  const handleTextChange = (e) => {
+    const text = e.target.value;
+    setTextareaValue(text); // Update textarea value
+    const words = text.trim().split(/\s+/).filter((word) => word.length > 0);
+    setWordCount(words.length); // Update word count
+  };
+
+  const handleTaskSwitch = (taskId) => {
+    setActiveTask(taskId);
+    setTextareaValue(''); // Reset textarea value when switching tasks
+    setWordCount(0); // Reset word count
   };
 
   const currentTask = mockTest.tasks[activeTask - 1];
@@ -119,7 +138,7 @@ Discuss both views and give your own opinion.`,
                 {mockTest.tasks.map((task) => (
                   <button
                     key={task.id}
-                    onClick={() => setActiveTask(task.id)}
+                    onClick={() => handleTaskSwitch(task.id)} // Use handleTaskSwitch
                     className={`flex items-center px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                       activeTask === task.id
                         ? 'bg-sky-600 text-white'
@@ -191,10 +210,31 @@ Discuss both views and give your own opinion.`,
                     <textarea
                       className="w-full h-96 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
                       placeholder="Write your response here..."
+                      value={textareaValue} // Bind textarea value
+                      onChange={handleTextChange} // Add onChange handler
                     />
                     <div className="mt-4 flex justify-between text-sm text-gray-500">
-                      <span>Word count: 0</span>
+                      <span>Word count: {wordCount}</span> {/* Display word count */}
                     </div>
+                  </div>
+
+                  {/* Continue Button */}
+                  <div className="mt-8 flex justify-end">
+                    {activeTask === 1 ? (
+                      <button
+                        onClick={() => handleTaskSwitch(2)} // Use handleTaskSwitch
+                        className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        Continue to Task 2
+                      </button>
+                    ) : (
+                      <Link
+                        to={`/mock-tests/${testId}/speaking`}
+                        className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        Continue to Speaking Section
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
@@ -206,4 +246,4 @@ Discuss both views and give your own opinion.`,
   );
 };
 
-export default Writing; 
+export default Writing;
