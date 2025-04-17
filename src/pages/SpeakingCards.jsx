@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeftIcon, ChatBubbleLeftRightIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 const SpeakingCards = () => {
@@ -557,181 +556,138 @@ const SpeakingCards = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12">
           <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 mb-4">
             IELTS Speaking Cards
           </h1>
           <p className="text-lg text-slate-600">Practice with our collection of speaking topics</p>
-        </motion.div>
+        </div>
 
-        <AnimatePresence mode="wait">
-          {activeCard === null ? (
-            <motion.div
-              key="cards"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {cards.map((card, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => handleCardClick(index)}
-                  className="group relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden cursor-pointer border border-slate-200/50 hover:border-slate-300/50 transition-all duration-300"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all duration-300" />
-                  <div className="relative p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-xl font-semibold text-slate-900">{card.title}</h3>
-                      <ChatBubbleLeftRightIcon className="h-6 w-6 text-slate-400 group-hover:text-blue-500 transition-colors" />
-                    </div>
-                    <div className="flex items-center text-slate-500 group-hover:text-blue-600 transition-colors">
-                      <span className="text-sm font-medium">Start practicing</span>
-                      <ChevronRightIcon className="h-4 w-4 ml-1" />
-                    </div>
+        {activeCard === null ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cards.map((card, index) => (
+              <div
+                key={index}
+                onClick={() => handleCardClick(index)}
+                className="group relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden cursor-pointer border border-slate-200/50 hover:border-slate-300/50 transition-all duration-300"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all duration-300" />
+                <div className="relative p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-semibold text-slate-900">{card.title}</h3>
+                    <ChatBubbleLeftRightIcon className="h-6 w-6 text-slate-400 group-hover:text-blue-500 transition-colors" />
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="content"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border border-slate-200/50"
-            >
-              <div className="bg-gradient-to-r from-slate-900 to-slate-800 p-6">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-semibold text-white">{cards[activeCard].title}</h3>
+                  <div className="flex items-center text-slate-500 group-hover:text-blue-600 transition-colors">
+                    <span className="text-sm font-medium">Start practicing</span>
+                    <ChevronRightIcon className="h-4 w-4 ml-1" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border border-slate-200/50">
+            <div className="bg-gradient-to-r from-slate-900 to-slate-800 p-6">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-semibold text-white">{cards[activeCard].title}</h3>
+                <button
+                  onClick={handleBackToCards}
+                  className="text-slate-300 hover:text-white transition-colors"
+                >
+                  <ArrowLeftIcon className="h-6 w-6" />
+                </button>
+        </div>
+            </div>
+
+            <div className="p-6">
+              <div className="flex justify-center space-x-4 mb-8">
+                {[1, 2, 3].map((section) => (
                   <button
-                    onClick={handleBackToCards}
-                    className="text-slate-300 hover:text-white transition-colors"
+                    key={section}
+                    onClick={() => setActiveSection(section)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                      activeSection === section
+                        ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/20'
+                        : 'text-slate-500 hover:text-slate-700 hover:bg-slate-100'
+                    }`}
                   >
-                    <ArrowLeftIcon className="h-6 w-6" />
+                    Section {section}
                   </button>
-                </div>
+                ))}
               </div>
 
-              <div className="p-6">
-                <div className="flex justify-center space-x-4 mb-8">
-                  {[1, 2, 3].map((section) => (
-                    <button
-                      key={section}
-                      onClick={() => setActiveSection(section)}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                        activeSection === section
-                          ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/20'
-                          : 'text-slate-500 hover:text-slate-700 hover:bg-slate-100'
-                      }`}
-                    >
-                      Section {section}
-                    </button>
+              <div className="space-y-6">
+                {activeSection === 1 && (
+                  <div>
+                    <h4 className="text-lg font-semibold text-slate-900 mb-4">General Questions</h4>
+                    <ul className="space-y-4">
+                      {cards[activeCard].section1.map((question, index) => (
+                        <li
+                          key={index}
+                          className="bg-slate-50/50 rounded-xl p-4 border border-slate-200/50 hover:border-slate-300/50 transition-colors"
+                        >
+                          <span className="text-slate-700">{question}</span>
+                        </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+                {activeSection === 2 && (
+                  <div>
+                    <h4 className="text-lg font-semibold text-slate-900 mb-4">Cue Card Topic</h4>
+                    <div className="bg-blue-50/50 rounded-xl p-4 mb-6 border border-blue-200/50">
+                      <p className="text-blue-900 font-medium">{cards[activeCard].section2.topic}</p>
+                    </div>
+                    <h4 className="text-lg font-semibold text-slate-900 mb-4">Points to Cover</h4>
+                    <ul className="space-y-4">
+                      {cards[activeCard].section2.bulletPoints.map((point, index) => (
+                        <li
+                          key={index}
+                          className="bg-slate-50/50 rounded-xl p-4 border border-slate-200/50 hover:border-slate-300/50 transition-colors"
+                        >
+                          <span className="text-slate-700">{point}</span>
+                        </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+                {activeSection === 3 && (
+              <div>
+                    <h4 className="text-lg font-semibold text-slate-900 mb-4">Discussion Questions</h4>
+                    <ul className="space-y-4">
+                      {cards[activeCard].section3.map((question, index) => (
+                        <li
+                          key={index}
+                          className="bg-slate-50/50 rounded-xl p-4 border border-slate-200/50 hover:border-slate-300/50 transition-colors"
+                        >
+                          <span className="text-slate-700">{question}</span>
+                        </li>
                   ))}
-                </div>
-
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeSection}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3 }}
-                    className="space-y-6"
-                  >
-                    {activeSection === 1 && (
-                      <div>
-                        <h4 className="text-lg font-semibold text-slate-900 mb-4">General Questions</h4>
-                        <ul className="space-y-4">
-                          {cards[activeCard].section1.map((question, index) => (
-                            <motion.li
-                              key={index}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.1 }}
-                              className="bg-slate-50/50 rounded-xl p-4 border border-slate-200/50 hover:border-slate-300/50 transition-colors"
-                            >
-                              <span className="text-slate-700">{question}</span>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {activeSection === 2 && (
-                      <div>
-                        <h4 className="text-lg font-semibold text-slate-900 mb-4">Cue Card Topic</h4>
-                        <div className="bg-blue-50/50 rounded-xl p-4 mb-6 border border-blue-200/50">
-                          <p className="text-blue-900 font-medium">{cards[activeCard].section2.topic}</p>
-                        </div>
-                        <h4 className="text-lg font-semibold text-slate-900 mb-4">Points to Cover</h4>
-                        <ul className="space-y-4">
-                          {cards[activeCard].section2.bulletPoints.map((point, index) => (
-                            <motion.li
-                              key={index}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.1 }}
-                              className="bg-slate-50/50 rounded-xl p-4 border border-slate-200/50 hover:border-slate-300/50 transition-colors"
-                            >
-                              <span className="text-slate-700">{point}</span>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {activeSection === 3 && (
-                      <div>
-                        <h4 className="text-lg font-semibold text-slate-900 mb-4">Discussion Questions</h4>
-                        <ul className="space-y-4">
-                          {cards[activeCard].section3.map((question, index) => (
-                            <motion.li
-                              key={index}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.1 }}
-                              className="bg-slate-50/50 rounded-xl p-4 border border-slate-200/50 hover:border-slate-300/50 transition-colors"
-                            >
-                              <span className="text-slate-700">{question}</span>
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-
-                {activeSection < 3 ? (
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={handleNextSection}
-                    className="mt-8 w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200"
-                  >
-                    Next Section
-                  </motion.button>
-                ) : (
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={handleBackToCards}
-                    className="mt-8 w-full bg-gradient-to-r from-slate-600 to-slate-700 text-white py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200"
-                  >
-                    Back to Speaking Cards
-                  </motion.button>
+                </ul>
+                  </div>
                 )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+
+              {activeSection < 3 ? (
+              <button
+                  onClick={handleNextSection}
+                  className="mt-8 w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200"
+                >
+                  Next Section
+              </button>
+              ) : (
+              <button
+                  onClick={handleBackToCards}
+                  className="mt-8 w-full bg-gradient-to-r from-slate-600 to-slate-700 text-white py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200"
+                >
+                  Back to Speaking Cards
+              </button>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,92 +1,96 @@
-import { motion } from 'framer-motion';
-import { BookOpenIcon, LightBulbIcon } from '@heroicons/react/24/outline';
+import {
+  ClockIcon,
+  CalendarIcon,
+  ArrowPathIcon,
+  ArrowTrendingUpIcon
+} from '@heroicons/react/24/outline';
 
 const Tenses = () => {
   const tenses = [
     {
-      category: "Present Tenses",
+      category: 'Present Tenses',
       types: [
         {
-          name: "Present Simple",
-          description: "Describe habits, facts, and routines.",
-          example: "The sun rises in the east.",
-          use: "Describing general trends, daily routines, or permanent truths."
+          name: 'Simple Present',
+          description: 'Used for habits, general truths, and scheduled events',
+          example: 'I study English every day.',
+          ieltsUse: 'Common in Writing Task 1 for describing general trends'
         },
         {
-          name: "Present Continuous",
-          description: "Describe ongoing actions or near future arrangements.",
-          example: "She is studying right now.",
-          use: "Describing current actions or future plans."
+          name: 'Present Continuous',
+          description: 'Used for actions happening now or temporary situations',
+          example: 'I am studying English right now.',
+          ieltsUse: 'Useful in Speaking Part 1 for describing current activities'
         },
         {
-          name: "Present Perfect",
-          description: "Emphasize experience or results over time, connecting the past and present.",
-          example: "I have lived here for five years.",
-          use: "Talking about experiences without specific time references."
+          name: 'Present Perfect',
+          description: 'Used for actions that started in the past and continue to the present',
+          example: 'I have studied English for three years.',
+          ieltsUse: 'Important in Writing Task 2 for discussing experiences'
         },
         {
-          name: "Present Perfect Continuous",
-          description: "Focus on the duration of actions from the past to the present.",
-          example: "She has been reading for two hours.",
-          use: "Expressing long-term actions or unfinished activities."
+          name: 'Present Perfect Continuous',
+          description: 'Used for actions that started in the past and are still continuing',
+          example: 'I have been studying English since 2020.',
+          ieltsUse: 'Useful in Speaking Part 2 for describing ongoing activities'
         }
       ]
     },
     {
-      category: "Past Tenses",
+      category: 'Past Tenses',
       types: [
         {
-          name: "Past Simple",
-          description: "Completed actions at a specific past time.",
-          example: "I visited London last summer.",
-          use: "Discussing past events or actions."
+          name: 'Simple Past',
+          description: 'Used for completed actions in the past',
+          example: 'I studied English yesterday.',
+          ieltsUse: 'Common in Writing Task 1 for describing past data'
         },
         {
-          name: "Past Continuous",
-          description: "Actions happening in progress at a specific point in the past.",
-          example: "I was watching TV when the phone rang.",
-          use: "Setting a scene or providing background information."
+          name: 'Past Continuous',
+          description: 'Used for actions that were in progress at a specific time in the past',
+          example: 'I was studying English when you called.',
+          ieltsUse: 'Useful in Speaking Part 2 for setting the scene'
         },
         {
-          name: "Past Perfect",
-          description: "Actions completed before other past actions.",
-          example: "She had finished the work before the deadline.",
-          use: "Discussing the sequence of events in the past."
+          name: 'Past Perfect',
+          description: 'Used for actions completed before another past action',
+          example: 'I had studied English before I moved to Canada.',
+          ieltsUse: 'Important in Writing Task 2 for showing sequence of events'
         },
         {
-          name: "Past Perfect Continuous",
-          description: "Duration of actions that were ongoing before another past action.",
-          example: "I had been studying for hours when my friend called.",
-          use: "Emphasizing the duration of an action in the past."
+          name: 'Past Perfect Continuous',
+          description: 'Used for actions that were ongoing before another past action',
+          example: 'I had been studying English for two years before I took the IELTS.',
+          ieltsUse: 'Useful in Speaking Part 3 for discussing past experiences'
         }
       ]
     },
     {
-      category: "Future Tenses",
+      category: 'Future Tenses',
       types: [
         {
-          name: "Future Simple",
-          description: "Predictions, promises, or decisions about the future.",
-          example: "I will visit the museum tomorrow.",
-          use: "Talking about future events or plans."
+          name: 'Simple Future',
+          description: 'Used for predictions and planned future actions',
+          example: 'I will study English tomorrow.',
+          ieltsUse: 'Common in Writing Task 2 for discussing future implications'
         },
         {
-          name: "Future Continuous",
-          description: "Ongoing action happening at a specific time in the future.",
-          example: "At 6 PM, I will be studying.",
-          use: "Describing future events in progress at a certain time."
+          name: 'Future Continuous',
+          description: 'Used for actions that will be in progress at a specific future time',
+          example: 'I will be studying English at this time tomorrow.',
+          ieltsUse: 'Useful in Speaking Part 3 for discussing future plans'
         },
         {
-          name: "Future Perfect",
-          description: "Actions that will be completed before a specific future point.",
-          example: "By next week, I will have finished the project.",
-          use: "Talking about future events with definite endpoints."
+          name: 'Future Perfect',
+          description: 'Used for actions that will be completed before a specific future time',
+          example: 'I will have studied English for four years by next month.',
+          ieltsUse: 'Important in Writing Task 2 for discussing future achievements'
         },
         {
-          name: "Future Perfect Continuous",
-          description: "Duration of ongoing actions that will happen until a future point.",
-          example: "By 2025, I will have been working here for ten years.",
-          use: "Discussing long-term actions or experiences leading up to a future moment."
+          name: 'Future Perfect Continuous',
+          description: 'Used for actions that will have been ongoing up to a specific future time',
+          example: 'I will have been studying English for five years by 2025.',
+          ieltsUse: 'Useful in Speaking Part 3 for discussing long-term plans'
         }
       ]
     }
@@ -95,68 +99,43 @@ const Tenses = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Tenses in IELTS</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Tense usage is essential for clarity in expressing when an event happens—whether in the past, present, or future. It's critical to use the correct tense for accuracy and coherence in both Writing and Speaking tasks.
-          </p>
-        </motion.div>
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">English Tenses</h1>
+          <p className="text-xl text-gray-600">Master the use of different tenses for IELTS success</p>
+        </div>
 
-        <div className="space-y-12">
-          {tenses.map((category, categoryIndex) => (
-            <motion.div
-              key={category.category}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden"
-            >
-              <div className="bg-blue-600 px-6 py-4">
-                <h2 className="text-2xl font-bold text-white">{category.category}</h2>
-              </div>
-              
-              <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {category.types.map((type, index) => (
-                    <motion.div
-                      key={type.name}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow"
-                    >
-                      <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0">
-                          <BookOpenIcon className="h-6 w-6 text-blue-600" />
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            {type.name}
-                          </h3>
-                          <p className="text-gray-600 mb-4">{type.description}</p>
-                          
-                          <div className="bg-white rounded-md p-4 mb-4">
-                            <p className="text-gray-700 italic">"{type.example}"</p>
-                          </div>
-                          
-                          <div className="flex items-start space-x-2">
-                            <LightBulbIcon className="h-5 w-5 text-yellow-500 flex-shrink-0 mt-1" />
-                            <p className="text-sm text-gray-600">
-                              <span className="font-medium">IELTS Use:</span> {type.use}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {tenses.map((category, index) => (
+            <div key={index} className="bg-white rounded-2xl shadow-xl overflow-hidden">
+              <div className={`bg-gradient-to-r ${
+                index === 0 ? 'from-blue-500 to-sky-500' :
+                index === 1 ? 'from-purple-500 to-pink-500' :
+                'from-green-500 to-emerald-500'
+              } p-6`}>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xl font-semibold text-white">{category.category}</h3>
+                  {index === 0 ? <ClockIcon className="h-6 w-6 text-white" /> :
+                   index === 1 ? <CalendarIcon className="h-6 w-6 text-white" /> :
+                   <ArrowTrendingUpIcon className="h-6 w-6 text-white" />}
                 </div>
               </div>
-            </motion.div>
+              <div className="p-6">
+                <ul className="space-y-6">
+                  {category.types.map((type, typeIndex) => (
+                    <li key={typeIndex} className="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">{type.name}</h4>
+                      <p className="text-gray-600 mb-2">{type.description}</p>
+                      <div className="bg-gray-50 p-4 rounded-lg mb-2">
+                        <p className="text-gray-700 italic">Example: {type.example}</p>
+                      </div>
+                      <div className="bg-blue-50 p-4 rounded-lg">
+                        <p className="text-blue-700">IELTS Use: {type.ieltsUse}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           ))}
         </div>
       </div>
