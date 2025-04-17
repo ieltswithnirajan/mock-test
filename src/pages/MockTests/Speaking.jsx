@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ClockIcon, MicrophoneIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ClockIcon, MicrophoneIcon, ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
 
 const Timer = ({ duration, isActive }) => {
   const [timeLeft, setTimeLeft] = useState(duration * 60);
@@ -106,12 +107,12 @@ const Speaking = () => {
               You have completed Mock Test 1. Well done on completing all sections of the test!
             </p>
             <div className="flex justify-center">
-              <button
-                onClick={() => window.location.href = '/mock-tests'}
+              <Link
+                to="/mock-tests"
                 className="bg-sky-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-sky-700 transition-colors"
               >
                 Return to Mock Tests
-              </button>
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -226,6 +227,14 @@ const Speaking = () => {
               {currentPart === parts.length - 1 ? 'Complete Test' : 'Next Part'}
             </button>
           </div>
+
+          <Link
+            to="/mock-tests"
+            className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6"
+          >
+            <ArrowLeftIcon className="h-4 w-4 mr-2" />
+            Back to Mock Tests
+          </Link>
         </motion.div>
       </div>
 

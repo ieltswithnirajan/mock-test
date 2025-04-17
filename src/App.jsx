@@ -5,12 +5,17 @@ import Footer from './components/Footer';
 
 // Main Pages
 import Home from './pages/Home';
+import About from './pages/About';
+import LearningResources from './pages/LearningResources';
+
+// Learning Resources
 import Grammar from './pages/Grammar';
 import Strategies from './pages/Strategies';
 import SpeakingCards from './pages/SpeakingCards';
 import LatestTopics from './pages/LatestTopics';
+import WritingSamples from './pages/WritingSamples';
 
-// Mock Test Pages
+// Mock Tests
 import MockTests from './pages/MockTests';
 import Reading from './pages/MockTests/Reading';
 import Writing from './pages/MockTests/Writing';
@@ -29,14 +34,19 @@ function App() {
           className="flex-grow pt-8 md:pt-12"
         >
           <Routes>
-            {/* Main Routes */}
+            {/* Core Pages */}
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/learning-resources" element={<LearningResources />} />
+
+            {/* Learning Resources */}
             <Route path="/grammar" element={<Grammar />} />
             <Route path="/strategies" element={<Strategies />} />
             <Route path="/speaking-cards" element={<SpeakingCards />} />
             <Route path="/latest-topics" element={<LatestTopics />} />
+            <Route path="/writing-samples" element={<WritingSamples />} />
 
-            {/* Mock Tests Routes */}
+            {/* Mock Tests */}
             <Route path="/mock-tests" element={<MockTests />} />
             <Route path="/mock-tests/:testId/listening" element={<Listening />} />
             <Route path="/mock-tests/:testId/reading" element={<Reading />} />

@@ -361,11 +361,11 @@ F A number of steps need to be taken in order to avert a costly predicament in t
       {showInstructions ? (
         <div className="max-w-2xl mx-auto">
           <Link
-            to={`/mock-tests/${testId}`}
+            to="/mock-tests"
             className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6"
           >
             <ArrowLeftIcon className="h-4 w-4 mr-2" />
-            Back to Mock Test
+            Back to Mock Tests
           </Link>
           <h1 className="text-3xl font-bold mb-6">IELTS Reading Test Instructions</h1>
           <div className="bg-white rounded-lg shadow-lg p-6 space-y-4">
