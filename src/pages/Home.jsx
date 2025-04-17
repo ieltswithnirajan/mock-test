@@ -133,31 +133,54 @@ const Home = () => {
       </section>
 
       {/* About Section */}
+           {/* About Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-sky-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Text Content */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              className="space-y-6"
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">About Nirajan</h2>
-              <div className="space-y-4 text-lg text-gray-600">
-                <p>
-                  With over 2 years of dedicated experience in IELTS instruction, I've had the privilege of guiding hundreds of students toward achieving their desired band scores.
-                </p>
-                <p>
-                  My journey spans across multiple international projects, allowing me to work within diverse cultures and adapt to varied communication styles. This exposure has not only broadened my perspective but also enhanced my ability to connect with learners from all backgrounds.
-                </p>
-                <p>
-                  Teaching IELTS is more than a profession-it's a passion. I find genuine joy in breaking down complex ideas into simple, practical strategies that empower students to grow in confidence and capability.
-                </p>
-                <p>
-                  Every learner is unique, and I believe in a personalized approach rooted in clarity, consistency, and continuous progress.
-                </p>
+              <h2 className="text-5xl font-extrabold text-gray-900 leading-tight">
+                Meet <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Nirajan</span>
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                With over 2 years of dedicated experience in IELTS instruction, I’ve guided hundreds of students toward achieving their desired band scores. My passion lies in simplifying complex ideas into practical strategies that empower learners to excel.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <SparklesIcon className="w-6 h-6 text-blue-600" />
+                  <p className="text-gray-600">
+                    Over 2 years of experience in IELTS instruction with a proven track record of success.
+                  </p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <AcademicCapIcon className="w-6 h-6 text-blue-600" />
+                  <p className="text-gray-600">
+                    Expertise in breaking down complex concepts into simple, actionable strategies.
+                  </p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <LightBulbIcon className="w-6 h-6 text-blue-600" />
+                  <p className="text-gray-600">
+                    Personalized teaching approach tailored to each learner’s unique needs.
+                  </p>
+                </div>
               </div>
+              <Link
+                to="/about"
+                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-sky-500 text-white rounded-lg text-lg font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                Learn More About Me
+                <ArrowRightIcon className="w-5 h-5 ml-2" />
+              </Link>
             </motion.div>
+
+            {/* Image Content */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -165,12 +188,17 @@ const Home = () => {
               viewport={{ once: true }}
               className="relative flex justify-center items-center"
             >
-              <div className="w-full max-w-md h-auto rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative w-full max-w-md h-auto rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src={pic}
                   alt="Nirajan teaching"
                   className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <p className="text-white text-lg font-medium">
+                    "Teaching IELTS is more than a profession—it’s a passion."
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>

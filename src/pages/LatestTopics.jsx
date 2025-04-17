@@ -1,13 +1,10 @@
 import { motion } from 'framer-motion';
-import { 
-  CalendarIcon, 
+import {
+  CalendarIcon,
   TagIcon,
   ChatBubbleLeftRightIcon,
   PencilSquareIcon,
   BookOpenIcon,
-  LightBulbIcon,
-  QuestionMarkCircleIcon,
-  CheckCircleIcon
 } from '@heroicons/react/24/outline';
 
 const topics = [
@@ -645,167 +642,108 @@ Tips for answering:
   },
 ];
 
+
+const getCategoryStyle = (category) => {
+  switch (category) {
+    case 'Speaking':
+      return 'bg-purple-100 text-purple-600';
+    case 'Writing':
+      return 'bg-rose-100 text-rose-600';
+    case 'Reading':
+      return 'bg-blue-100 text-blue-600';
+    default:
+      return 'bg-gray-100 text-gray-600';
+  }
+};
+
+const getTipStyle = (category) => {
+  switch (category) {
+    case 'Speaking':
+      return 'bg-purple-200 text-purple-800';
+    case 'Writing':
+      return 'bg-rose-200 text-rose-800';
+    case 'Reading':
+      return 'bg-blue-200 text-blue-800';
+    default:
+      return 'bg-gray-200 text-gray-800';
+  }
+};
+
 const LatestTopics = () => {
-  const formatContent = (content) => {
-    const sections = content.split('\n\n');
-    const formattedSections = [];
-    let currentSection = null;
-
-    sections.forEach((section) => {
-      if (section.includes('Tips for')) {
-        const [title, ...tips] = section.split('\n');
-        currentSection = {
-          type: 'tips',
-          title: title.replace(':', ''),
-          content: tips.map(tip => tip.trim().replace('- ', ''))
-        };
-      } else if (section.match(/^\d+\./m)) {
-        currentSection = {
-          type: 'questions',
-          content: section.split('\n').filter(line => line.match(/^\d+\./)).map(q => q.replace(/^\d+\.\s*/, '').trim())
-        };
-      } else if (section.trim()) {
-        currentSection = {
-          type: 'text',
-          content: section.trim()
-        };
-      }
-      
-      if (currentSection) {
-        formattedSections.push(currentSection);
-        currentSection = null;
-      }
-    });
-
-    return formattedSections;
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-medium mb-4"
-          >
-            Latest Updates
-          </motion.span>
-          <motion.h1 
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 mb-4"
+            className="text-4xl font-bold text-gray-900 mb-4"
           >
-            IELTS Topics & Questions
+            Latest IELTS Topics
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-xl text-gray-600"
+          >
+            Stay updated with the most recent IELTS topics and questions
+          </motion.p>
         </div>
 
         <div className="space-y-8">
-          {topics.map((topic) => (
+          {topics.map(({ id, title, date, category, icon: Icon, content, tags }) => (
             <motion.div
-              key={topic.id}
+              key={id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl shadow-md overflow-hidden"
+              className="bg-gray-800 text-white rounded-2xl shadow-lg overflow-hidden"
             >
-              {/* Topic Header */}
-              <div className={`px-6 py-4 border-b ${
-                topic.category === 'Speaking' ? 'bg-purple-50' :
-                topic.category === 'Writing' ? 'bg-rose-50' :
-                'bg-blue-50'
-              }`}>
-                <div className="flex items-center justify-between">
+              <div className="p-8">
+                <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
-                    <topic.icon className={`h-5 w-5 ${
-                      topic.category === 'Speaking' ? 'text-purple-600' :
-                      topic.category === 'Writing' ? 'text-rose-600' :
-                      'text-blue-600'
-                    } mr-3`} />
-                    <h2 className="text-lg font-semibold text-gray-900">{topic.title}</h2>
+                    <div className={`p-2 rounded-lg ${getCategoryStyle(category)}`}>
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h2 className="text-xl font-semibold text-white ml-4">{title}</h2>
                   </div>
-                  <div className="flex items-center text-gray-500 text-sm">
-                    <CalendarIcon className="h-4 w-4 mr-1" />
-                    <span>{topic.date}</span>
+                  <div className="flex items-center text-gray-400">
+                    <CalendarIcon className="h-5 w-5 mr-2" />
+                    <span className="text-sm">{date}</span>
                   </div>
                 </div>
-              </div>
 
-              <div className="p-6 space-y-6">
-                {formatContent(topic.content).map((section, index) => {
-                  if (section.type === 'questions') {
-                    return (
-                      <div key={index} className="space-y-3">
-                        {section.content.map((question, qIndex) => (
-                          <motion.div 
-                            key={qIndex}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: qIndex * 0.1 }}
-                            viewport={{ once: true }}
-                            className="flex items-start group p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-                          >
-                            <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 font-medium mr-3">
-                              {qIndex + 1}
-                            </span>
-                            <p className="text-gray-700 pt-1.5">{question}</p>
-                          </motion.div>
-                        ))}
-                      </div>
-                    );
-                  } else if (section.type === 'tips') {
-                    return (
-                      <motion.div 
-                        key={index}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6"
-                      >
-                        <div className="flex items-center mb-4">
-                          <LightBulbIcon className="h-5 w-5 text-amber-500 mr-2" />
-                          <h3 className="font-medium text-gray-900">{section.title}</h3>
+                <div className="prose prose-invert max-w-none mb-6">
+                  {content.split('\n\n').map((paragraph, idx) => {
+                    if (paragraph.startsWith('Tips for answering:')) {
+                      return (
+                        <div
+                          key={idx}
+                          className={`p-4 rounded-lg ${getTipStyle(category)} mb-4`}
+                        >
+                          <strong>Tips for answering:</strong>
+                          <p className="mt-2">{paragraph.replace('Tips for answering:', '').trim()}</p>
                         </div>
-                        <div className="space-y-3">
-                          {section.content.map((tip, tIndex) => (
-                            <motion.div 
-                              key={tIndex}
-                              initial={{ opacity: 0, y: 10 }}
-                              whileInView={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.3, delay: tIndex * 0.1 }}
-                              viewport={{ once: true }}
-                              className="flex items-start bg-white/60 backdrop-blur-sm p-3 rounded-lg"
-                            >
-                              <CheckCircleIcon className="h-5 w-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
-                              <p className="text-gray-700">{tip}</p>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    );
-                  } else {
+                      );
+                    }
                     return (
-                      <div key={index} className="text-gray-600">
-                        {section.content}
-                      </div>
+                      <p key={idx} className="text-gray-300 whitespace-pre-line">
+                        {paragraph}
+                      </p>
                     );
-                  }
-                })}
+                  })}
+                </div>
 
-                <div className="flex flex-wrap gap-2 pt-4">
-                  {topic.tags.map((tag) => (
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag, i) => (
                     <span
-                      key={tag}
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        topic.category === 'Speaking' ? 'bg-purple-100 text-purple-800' :
-                        topic.category === 'Writing' ? 'bg-rose-100 text-rose-800' :
-                        'bg-blue-100 text-blue-800'
-                      }`}
+                      key={i}
+                      className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-700 text-gray-300"
                     >
+                      <TagIcon className="h-4 w-4 mr-1" />
                       {tag}
                     </span>
                   ))}
@@ -819,4 +757,4 @@ const LatestTopics = () => {
   );
 };
 
-export default LatestTopics; 
+export default LatestTopics;
