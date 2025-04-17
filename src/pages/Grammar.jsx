@@ -5,7 +5,11 @@ import Modals from '../components/grammar/Modals';
 import Conditionals from '../components/grammar/Conditionals';
 import Articles from '../components/grammar/Articles';
 import Prepositions from '../components/grammar/Prepositions';
-
+import PassiveVoice from '../components/grammar/PassiveVoice';
+import AdjectivesAdverbs from '../components/grammar/AdjectivesandAdverbs';
+import ReportedSpeech from '../components/grammar/ReportedSpeech';
+import RelativeClauses from '../components/grammar/RelativeClause';
+import ComparativesSuperlatives from '../components/grammar/ComparativesAndSuperlative';
 const Grammar = () => {
   const [activeTab, setActiveTab] = useState('tenses');
 
@@ -14,7 +18,12 @@ const Grammar = () => {
     { id: 'modals', name: 'Modals', component: Modals },
     { id: 'conditionals', name: 'Conditionals', component: Conditionals },
     { id: 'articles', name: 'Articles', component: Articles },
-    { id: 'prepositions', name: 'Prepositions', component: Prepositions }
+    { id: 'prepositions', name: 'Prepositions', component: Prepositions },
+    { id: 'passive-voice', name: 'Passive Voice', component: PassiveVoice },
+    { id: 'adjectives-adverbs', name: 'Adjectives & Adverbs', component: AdjectivesAdverbs },
+    { id: 'reported-speech', name: 'Reported Speech', component: ReportedSpeech },
+    { id: 'relative-clauses', name: 'Relative Clauses', component: RelativeClauses },
+    { id: 'comparatives-superlatives', name: 'Comparatives & Superlatives', component: ComparativesSuperlatives },
   ];
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component;

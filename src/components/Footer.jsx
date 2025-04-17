@@ -67,7 +67,7 @@ const Footer = () => {
 
           {/* Placeholder for additional content */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-100 mb-4">About Us</h3>
+            <h3 className="text-lg font-semibold text-gray-100 mb-4">About Me</h3>
             <p className="text-gray-400">
               Join  community and take your IELTS preparation to the next level. Learn, practice, and succeed with us.
             </p>
