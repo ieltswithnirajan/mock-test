@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import ComprehensiveLearningResources from '../components/comprehensiveHome';
 import { 
   BookOpenIcon, 
   LightBulbIcon, 
@@ -128,37 +129,7 @@ const Home = () => {
 
       {/* Features Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Comprehensive Learning Resources</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Access a wide range of resources designed to help you excel in all IELTS modules
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <Link
-                  to={feature.path}
-                  className="block p-8 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className={`inline-flex p-3 rounded-xl ${feature.bgLight} mb-6`}>
-                    <feature.icon className={`w-8 h-8 bg-gradient-to-r ${feature.color} bg-clip-text text-transparent`} />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.name}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      <ComprehensiveLearningResources features={features} />
       </section>
 
       {/* About Section */}

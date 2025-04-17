@@ -17,7 +17,7 @@ In 1950, China had the largest population at approximately 550 million, followed
 However, the most significant change occurred after 2020, when India's population surpassed China's. By 2050, India is projected to have the largest population at about 1.6 billion, while China's population is expected to stabilize at around 1.4 billion. The USA's population, though growing steadily, remains significantly smaller, reaching approximately 400 million by 2050.
 
 Overall, while all three countries show population growth, India is expected to become the most populous country by 2050, with China's growth rate slowing down significantly.`,
-      bandScore: 8,
+      bandScore: 7.5,
       analysis: [
         "Task Achievement: The response fully addresses the task, clearly presenting the main trends and making relevant comparisons.",
         "Coherence and Cohesion: The answer is well-organized with clear paragraphing and appropriate linking words.",
@@ -38,7 +38,7 @@ On the one hand, technology has undoubtedly made education more accessible. Onli
 On the other hand, critics argue that technology has created significant challenges. The digital divide means that students without access to reliable internet or devices are at a disadvantage. Moreover, the over-reliance on technology can lead to reduced face-to-face interaction and critical thinking skills. The prevalence of online distractions and the potential for academic dishonesty are additional concerns.
 
 In my opinion, while technology has revolutionized education, its benefits can only be fully realized when accompanied by proper infrastructure and digital literacy programs. Governments and educational institutions must work together to ensure equitable access to technology while maintaining the essential human elements of education.`,
-      bandScore: 8.5,
+      bandScore: 7.5,
       analysis: [
         "Task Response: The essay fully addresses the prompt, presenting both views and a clear opinion.",
         "Coherence and Cohesion: Well-structured with clear progression of ideas and effective linking devices.",

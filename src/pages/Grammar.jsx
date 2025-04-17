@@ -10,6 +10,7 @@ import AdjectivesAdverbs from '../components/grammar/AdjectivesandAdverbs';
 import ReportedSpeech from '../components/grammar/ReportedSpeech';
 import RelativeClauses from '../components/grammar/RelativeClause';
 import ComparativesSuperlatives from '../components/grammar/ComparativesAndSuperlative';
+
 const Grammar = () => {
   const [activeTab, setActiveTab] = useState('tenses');
 
@@ -29,25 +30,28 @@ const Grammar = () => {
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Grammar Guide</h1>
-          <p className="text-xl text-gray-600">
-            Master essential grammar concepts for IELTS success
+    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 to-purple-600 mb-4">
+            Grammar Guide
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Master essential grammar concepts for IELTS success with our comprehensive guide
           </p>
+          <div className="mt-6 w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full"></div>
         </div>
 
-        <div className="mb-8">
-          <nav className="flex space-x-4 justify-center" aria-label="Tabs">
+        <div className="mb-10 bg-white rounded-2xl shadow-lg p-2 overflow-x-auto">
+          <nav className="flex flex-wrap md:flex-nowrap justify-center gap-2" aria-label="Tabs">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 text-sm font-medium rounded-md ${
+                className={`px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 ${
                   activeTab === tab.id
-                    ? 'bg-indigo-600 text-white'
-                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md transform scale-105'
+                    : 'text-gray-600 hover:text-indigo-700 hover:bg-indigo-50'
                 }`}
               >
                 {tab.name}
@@ -56,20 +60,29 @@ const Grammar = () => {
           </nav>
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {ActiveComponent && <ActiveComponent />}
-          </motion.div>
-        </AnimatePresence>
+        <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="min-h-[400px]"
+            >
+              {ActiveComponent && <ActiveComponent />}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="mt-12 text-center">
+          <p className="text-sm text-gray-500">
+            Enhance your IELTS preparation with our comprehensive grammar resources
+          </p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Grammar; 
+export default Grammar;
